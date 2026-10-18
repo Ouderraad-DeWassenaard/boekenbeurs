@@ -107,6 +107,19 @@
     border-radius: 999px;
   }
   .top nav a:hover { background: #f6e9ec; }
+  .top-rechts { display: flex; align-items: center; gap: .75rem; }
+  .top-socials { display: flex; gap: .4rem; }
+  .top-socials a {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background: var(--papier);
+    border: 1.5px solid var(--rand);
+  }
+  .top-socials a:hover { border-color: var(--wijn); }
+  .top-socials img { width: 1.6rem; height: 1.6rem; }
 
   /* Hero, opgebouwd zoals de affiche */
   .hero {
@@ -343,12 +356,18 @@
       <span>Ouderraad</span>
       <img src="img/ouderraad-logo.webp" alt="VBS De Wassenaard" width="220" height="180">
     </a>
-    <nav aria-label="Op deze pagina">
-      <a href="#praktisch">Praktisch</a>
-      <a href="#auteur">Auteur</a>
-      <a href="#bestellen">Online bestellen</a>
-      <a href="#factuur">Op factuur</a>
-    </nav>
+    <div class="top-rechts">
+      <nav aria-label="Op deze pagina">
+        <a href="#praktisch">Praktisch</a>
+        <a href="#auteur">Auteur</a>
+        <a href="#bestellen">Online bestellen</a>
+        <a href="#factuur">Op factuur</a>
+      </nav>
+      <div class="top-socials">
+        <a href="https://www.facebook.com/Dewassenaard" aria-label="Ouderraad De Wassenaard op Facebook"><img src="img/facebook.webp" alt="" width="96" height="96"></a>
+        <a href="https://www.instagram.com/ouderraad_de_wassenaard/" aria-label="Ouderraad De Wassenaard op Instagram"><img src="img/instagram.webp" alt="" width="96" height="96"></a>
+      </div>
+    </div>
   </header>
 
   <main>
