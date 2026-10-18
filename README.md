@@ -10,6 +10,7 @@ Online: https://boekenbeurs.dewassenaard.be
 |---|---|
 | `index.html` | De volledige pagina: tekst, opmaak en een klein script, in één bestand. |
 | `img/` | Afbeeldingen (tekeningen, logo's, foto van de auteur), als WebP. |
+| `fonts/` | De lettertypes Barlow en Barlow Semi Condensed (SIL Open Font License, zie `fonts/OFL.txt`). |
 | `CNAME` | Het domein voor GitHub Pages. Niet verwijderen. |
 | `.nojekyll` | Zorgt dat GitHub Pages de bestanden toont zoals ze zijn. |
 
@@ -22,6 +23,10 @@ De achtergrond met auteursnamen en de tekeningen komen uit de affiche van de beu
 - **Afbeeldingen**: liefst WebP en niet breder dan ongeveer 1000 px.
 
 Deze repo is publiek. Zet er geen persoonsgegevens, namen van leerlingen of foto's zonder toestemming in.
+
+## Privacy en cookies
+
+De site gebruikt geen cookies en laadt niets van andere partijen: ook de lettertypes staan in deze repo. Daarom is er geen cookiebanner nodig, enkel de korte melding onderaan de pagina. Voeg je ooit statistieken (zoals Google Analytics), ingesloten video's, kaarten of lettertypes van een externe dienst toe, dan is vooraf toestemming van de bezoeker nodig en moet er wel een cookiebanner komen.
 
 ## Elk jaar
 
