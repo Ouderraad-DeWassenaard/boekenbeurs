@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boekenbeurs 2026 · VBS De Wassenaard</title>
+<!-- Voorbeeldfase: niet laten indexeren. Weghalen bij livegang. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Boekenbeurs van VBS De Wassenaard in Varsenare: vrijdag 13/11 15:00–18:30 en zaterdag 14/11 09:00–17:30. Elke aankoop steunt de school.">
+<meta property="og:title" content="Boekenbeurs 2026 · VBS De Wassenaard">
+<meta property="og:description" content="Vrijdag 13/11 15:00–18:30 en zaterdag 14/11 09:00–17:30, Westernieuwweg 5, Varsenare.">
+<!-- TODO: og:image met absolute URL zodra de pagina gehost is -->
+<link rel="icon" href="img/ouderraad-logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wijn: #610b22;
+    --wijn-licht: #8c3a50;
+    --rood: #ff0d25;
+    --namen: #d9d9d9;
+    --namen-accent: #595959;
+    --tekst: #2e1a20;
+    --papier: #fff;
+    --paneel: rgba(255, 255, 255, .93);
+    --rand: rgba(97, 11, 34, .16);
+    --display: "Barlow Semi Condensed", "Grandview Display", "Segoe UI", sans-serif;
+    --body: "Barlow", "Grandview", "Segoe UI", sans-serif;
+    --serif: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--papier);
+    color: var(--tekst);
+    font: 400 1.06rem/1.55 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--wijn); }
+  a:focus-visible { outline: 3px solid var(--rood); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  /* Achtergrond: muur van auteursnamen, zoals op de affiche */
+  .namen {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    padding: 0 4px;
+    color: var(--namen);
+    font: 15px/1.38 var(--serif);
+    text-align: justify;
+    hyphens: none;
+    user-select: none;
+    pointer-events: none;
+  }
+  .namen p { margin: 0; }
+  .namen b { color: var(--namen-accent); }
+
+  .voorbeeld {
+    background: var(--wijn);
+    color: #fff;
+    text-align: center;
+    font: 600 .85rem/1 var(--body);
+    letter-spacing: .04em;
+    padding: .5rem 1rem;
+  }
+
+  .wrap { width: min(1080px, 100% - 32px); margin-inline: auto; }
+
+  /* Kop */
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: .75rem;
+  }
+  .ouderraad {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    font: 600 1rem/1 var(--display);
+    color: var(--wijn);
+    background: var(--papier);
+    border-radius: 12px;
+    padding: .35rem .5rem .25rem;
+  }
+  .ouderraad img { width: 64px; }
+  .top nav { display: flex; gap: .25rem; flex-wrap: wrap; justify-content: flex-end; }
+  .top nav a {
+    font: 600 1.02rem/1 var(--display);
+    text-decoration: none;
+    color: var(--wijn);
+    background: var(--papier);
+    padding: .55rem .8rem;
+    border-radius: 999px;
+  }
+  .top nav a:hover { background: #f6e9ec; }
+
+  /* Hero, opgebouwd zoals de affiche */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    grid-template-areas: "merk merk" "titel walvis";
+    align-items: end;
+    gap: 0 1rem;
+    padding-bottom: 2.5rem;
+  }
+  .merk {
+    grid-area: merk;
+    position: relative;
+    width: min(100%, 520px);
+    margin-inline: auto;
+  }
+  .boek { width: 100%; }
+  .slogan {
+    position: relative;
+    margin: .5rem 0 0;
+    text-align: center;
+    font: 500 clamp(1.5rem, 5.6vw, 2.25rem)/1.15 var(--display);
+    color: var(--wijn);
+  }
+  .slogan span { background: var(--papier); border-radius: .3em; padding: 0 .3em; }
+
+  .titel { grid-area: titel; }
+  .walvis { grid-area: walvis; width: 100%; max-width: 360px; justify-self: end; margin-bottom: 3rem; }
+
+  h1 {
+    margin: 0;
+    font: 600 clamp(3rem, 10vw, 4.8rem)/.95 var(--display);
+    color: var(--wijn);
+    text-transform: uppercase;
+    letter-spacing: .01em;
+    text-shadow: 0 0 8px #fff, 0 0 16px #fff, 0 0 24px #fff;
+  }
+  h1 .klein { font-size: .74em; }
+  .datumrij { display: flex; align-items: center; gap: .9rem 1.2rem; flex-wrap: wrap; margin-top: .4rem; }
+  .jaar {
+    font: 700 clamp(3.2rem, 10.5vw, 5rem)/.9 var(--display);
+    color: var(--wijn);
+    text-shadow: 0 0 8px #fff, 0 0 16px #fff;
+  }
+  .uren { list-style: none; margin: 0; padding: .45rem .8rem; background: var(--papier); border-radius: 12px; }
+  .uren li { font: 600 clamp(1.15rem, 3.4vw, 1.5rem)/1.3 var(--display); color: var(--wijn); white-space: nowrap; }
+  .uren b { display: inline-block; min-width: 5.6em; font-weight: 700; }
+  .plaats { margin: 1rem 0 0; color: var(--wijn); text-shadow: 0 0 6px #fff, 0 0 12px #fff; }
+  .plaats strong { display: block; font: 700 clamp(1.7rem, 5vw, 2.5rem)/1.05 var(--display); }
+  .plaats span { font: 600 1.15rem/1.4 var(--display); background: var(--papier); border-radius: 6px; padding: 0 .3em; margin-left: -.3em; }
+
+  .knoppen { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1.25rem; }
+  .knop {
+    display: inline-block;
+    font: 600 1.1rem/1 var(--display);
+    text-decoration: none;
+    padding: .8rem 1.2rem;
+    border-radius: 999px;
+    background: var(--wijn);
+    color: #fff;
+    border: 2px solid var(--wijn);
+  }
+  .knop:hover { background: #7a1430; }
+  .knop.licht { background: var(--papier); color: var(--wijn); }
+  .knop.licht:hover { background: #f6e9ec; }
+
+  /* Waarom-band */
+  .waarom {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem 2rem;
+    flex-wrap: wrap;
+    background: var(--wijn);
+    color: #fff;
+    border-radius: 20px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2.5rem;
+  }
+  .waarom .pct { font: 700 clamp(3.4rem, 9vw, 4.6rem)/1 var(--display); }
+  .waarom p { margin: 0; flex: 1 1 20rem; font-size: 1.15rem; }
+  .waarom strong { font: 600 1.45rem/1.25 var(--display); display: block; margin-bottom: .2rem; }
+
+  /* Secties */
+  .rooster { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.25rem; margin-bottom: 1.25rem; }
+  .paneel {
+    position: relative;
+    background: var(--paneel);
+    border: 1px solid var(--rand);
+    border-radius: 20px;
+    padding: 1.6rem 1.75rem 1.75rem;
+    box-shadow: 0 6px 24px rgba(97, 11, 34, .07);
+    scroll-margin-top: 1rem;
+  }
+  .span-7 { grid-column: span 7; }
+  .span-5 { grid-column: span 5; }
+  .span-12 { grid-column: span 12; }
+  h2 {
+    margin: 0 0 .9rem;
+    font: 600 clamp(1.7rem, 4vw, 2.1rem)/1.1 var(--display);
+    color: var(--wijn);
+  }
+  h2::after {
+    content: "";
+    display: block;
+    width: 3.2rem;
+    height: 3px;
+    margin-top: .45rem;
+    background: linear-gradient(var(--wijn) 0 1px, transparent 1px 2px, var(--rood) 2px);
+  }
+  h3 { margin: 0 0 .3rem; font: 600 1.25rem/1.2 var(--display); color: var(--wijn); }
+  .paneel p { margin: 0 0 .8rem; }
+  .paneel p:last-child { margin-bottom: 0; }
+
+  .info { display: grid; grid-template-columns: max-content 1fr; gap: .55rem 1.1rem; margin: 0 0 1.1rem; }
+  .info dt { font: 600 1.1rem/1.45 var(--display); color: var(--wijn); }
+  .info dd { margin: 0; }
+  .tip { background: #f8eef0; border-radius: 12px; padding: .75rem 1rem; font-size: .98rem; }
+  .tip b { color: var(--wijn); }
+
+  /* Tekening rechtsonder binnen het vak, in de vrijgehouden rechterkolom */
+  .deco { position: absolute; right: 1.25rem; bottom: 1.25rem; width: 150px; pointer-events: none; }
+  .met-deco { padding-right: calc(150px + 2.5rem); }
+
+  .auteurfoto { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 14px; margin-bottom: 1rem; }
+  .highlight {
+    display: flex;
+    gap: .9rem;
+    align-items: center;
+    border: 2px solid var(--wijn);
+    border-radius: 14px;
+    padding: .8rem 1rem;
+    margin: 0 0 .8rem;
+    background: var(--papier);
+  }
+  .highlight .wanneer { font: 700 1.3rem/1.1 var(--display); color: var(--wijn); white-space: nowrap; }
+  .highlight p { margin: 0; }
+  .foto {
+    aspect-ratio: 4 / 5;
+    border: 2px dashed var(--rand);
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 1rem;
+    color: var(--wijn-licht);
+    font: 500 .95rem/1.3 var(--display);
+    background: #fdf9fa;
+  }
+
+  .stappen { list-style: none; counter-reset: stap; padding: 0; margin: 0 0 1.25rem; display: grid; gap: .75rem; }
+  .stappen li { counter-increment: stap; display: grid; grid-template-columns: 2.2rem 1fr; gap: .8rem; align-items: start; }
+  .stappen li::before {
+    content: counter(stap);
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    background: var(--wijn);
+    color: #fff;
+    font: 700 1.15rem/1 var(--display);
+  }
+  .stappen b { display: block; font: 600 1.12rem/1.3 var(--display); color: var(--wijn); }
+
+  .lijst { margin: 0 0 1rem; padding-left: 1.2rem; }
+  .lijst li { margin-bottom: .25rem; }
+  .lijst li::marker { color: var(--rood); }
+
+  .vroeger { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .vroeger figure { margin: 0; }
+  .vroeger .foto { aspect-ratio: 4 / 3; }
+  .vroeger figcaption { margin-top: .5rem; font-size: .95rem; }
+  .vroeger figcaption b { font: 600 1.08rem/1.3 var(--display); color: var(--wijn); display: block; }
+
+  /* Voet */
+  footer { padding: 2rem 0 3rem; }
+  .voet {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: var(--paneel);
+    border: 1px solid var(--rand);
+    border-radius: 20px;
+    padding: 1.25rem 1.5rem;
+  }
+  .partner { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--tekst); }
+  .partner img { width: 84px; height: 84px; border-radius: 50%; }
+  .partner small { display: block; font: 500 .95rem/1.2 var(--display); color: var(--wijn); }
+  .partner strong { font: 600 1.2rem/1.2 var(--display); color: var(--wijn); }
+  .socials { display: flex; gap: .6rem; flex-wrap: wrap; }
+  .pil {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    padding: .35rem .9rem .35rem .4rem;
+    border: 1.5px solid var(--wijn);
+    border-radius: 999px;
+    background: var(--papier);
+    text-decoration: none;
+    font: 600 1rem/1 var(--display);
+    color: var(--wijn);
+  }
+  .pil img { width: 30px; height: 30px; }
+  .colofon { width: 100%; margin: 0; font-size: .85rem; color: #6b5a5f; }
+
+  @media (max-width: 860px) {
+    .top nav { display: none; }
+    .hero { grid-template-columns: 1fr; grid-template-areas: "merk" "walvis" "titel"; }
+    .walvis { width: 58%; margin: -1rem 0 -.5rem; }
+    .rooster { grid-template-columns: 1fr; }
+    .span-7, .span-5, .span-12 { grid-column: auto; }
+    .met-deco { padding-right: 1.75rem; }
+    /* Op smal scherm onderaan in het vak, rechts uitgelijnd */
+    .deco { position: static; display: block; width: 100px; margin: 1rem 0 0 auto; }
+    .vroeger { grid-template-columns: 1fr; }
+    .vroeger .foto { aspect-ratio: 16 / 9; }
+  }
+  @media (max-width: 480px) {
+    .paneel, .met-deco { padding: 1.3rem 1.2rem 1.4rem; }
+    .info { grid-template-columns: 1fr; gap: .1rem; }
+    .info dd { margin-bottom: .55rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="namen" aria-hidden="true"><p>Jeroen Aalbers | Richard Abbenhuis | Tjeerd Adema | Jef Aerts | Mariëtte Aerts | Kristien Aertssen | Joukje Akveld | Kathleen Amant | Hans Andreus | Suze Andriessen | Ria Anyca | Clara Asscher-Pinkhof | Fikry El Azzouzi | Marijn Backer | Lieve Baeten | Rob Baetens | Daniëlle Bakhuis | Sanne de Bakker | Johan Ballegeer | Henk Barnard | Marjolein Bastin | Thea Beckman | Ina van der Beek | Els Beerten | Annemie Berebrouckx | Inge Bergh | Eveline Bergwerf | Aster Berkhof | Manon Berns | Paul Biegel | Ienne Biemans | Carli Biessels | Anita Bijsterbosch | Ingrid Bilardie | Liesbeth van Binsbergen | Kristien Bocken | Jet Boeke | André Boesberg | Jonas Boets | Elle van den Bogaart | Steven Bogaerts | Arno Bohlmeijer | Godfried Bomans | Annemarie Bon | Heide Boonen | Stefan Boonen | Burny Bos | Tamara Bos | Iris Boter | Mies Bouhuys | Nicole Boumaaza | Dirk Bracke | Frans Bresseleers | Yvonne Brill | Diane Broeckhoven | Rien Broere | Willeke Brouwer | Cor Bruijn | Dick Bruna | Trix van Brussel | Magda Buckinx | Pieter G. Buckinx | Antoinette Buckinx-Luykx | Suzanne Buis | Eva Burgers | Adri Burghout | Marianne Busser | An Candaele | Caja Cazemier | Malika Chaara | Nicolle Christiaanse | Sabien Clement | Carll Cneut | Marion van de Coolwijk | Mireille Cottenjé | Pieter Coudyzer | Arend van Dam | Wim Daniëls | Marc de Bel | Georges Ignace Debels | Ann De Bode | Nico De Braeckeleer | Michael De Cock | Wally De Doncker | Ilse De Keyzer | Jan De Kinder | Midas Dekkers | Geert De Kockere | Bea De Koster | Jan De Leeuw | Mattias De Leeuw | Piet De Loof | Gregie De Maeyer | Charlotte Dematons | Sofie De Moor | Bart Demyttenaere | Gerda Dendooven | Danielle Dergent | Luc Descamps | Marian De Smet | Marita de Sterck | Joep van Deudekom | Evelien De Vlieger | Kristof Devos | Koen D’haene | Bavo Dhooge | Miep Diekmann | Kristien Dieltiens | Lida Dijkstra | Lieneke Dijkzeul | Fred Diks | Miek Dorrestein | Evelien van Dort | Jozua Douglas | Tonke Dragt | Jaak Dreesen | Marcel van Driel | Imme Dros | Lieke van Duin | Bibi Dumon Tak | Gaston Durnez | Bies van Ede | Noud van den Eerenbeemt | Bettie Elias | Noëlla Elpers | Theo Engelen | Gertie Evenhuis | Karel Eykman | Johan Fabricius | Victoria Farkas | Ianka Fleerackers | Maaike Fluitsma | Ed Franck | Annie van Gansewinkel | Pieter Gaudesaboos | Harrie Geelen | Simon van der Geest | Wilma Geldof | Frank Geleyn | Peter van Gestel | Mireille Geus | Ad van Gils | Ingrid Godon | Siska Goeminne | Bobje Goudsmit | Thijs Goverde | Barend de Graaff | Cok Grashoff | Els de Groen | <b>Kris Kowlier</b> | Leny van Grootel | Halil Gür | Jaap ter Haar | Mark Haayema | Annemarie van Haeringen | Corrie Hafkamp | Hans Hagen | Monique Hagen | Elma van Haren | Evert Hartman | Loes Hazelaar | Veronica Hazelhoff | Martha Heesen | Youp van ‘t Hek | Pimm van Hest | Anneriek van Heugten | Haye van der Heyden | Maria Heylen | Annemie Heymans | Margriet Heymans | Hetty Heyting | Nienke van Hichtum | Marian Hoefnagel | Marjolijn Hof | Marjon Hoffman | Wim Hofman | Coby Hol | Vivian den Hollander | Philip Hopman | Mies van Hout | Marjet Huiberts | Gonneke Huizing | Kristien In-‘t-Ven | Kolet Janssen | Mariken Jongman | Jan Jutte | Netty van Kaathoven | Henk van Kerkwijk | Wouter Klootwijk | Pieter Koolwijk | Anke Kranendonk | Rindert Kromhout | Guus Kuijer | Marco Kunst | Hans Kuyper | Sjoerd Kuyper | Dick Laan | Patrick Lagrou | Esmé Lammers | Pim Lammers | Ron Langenus | Lucrèce L’Ecluse | Cor Ria Leeman | Joke van Leeuwen | Marc Legendre | Benjamin Leroy | Martine Letterie | Dimitri Leue | An Leysen | Elle van Lieshout | Ted van Lieshout | Benny Lindelauf | Martijn van der Linden | An Rutgers van der Loeff | Paul van Loon | Wauter Mannaert | Tom Marien | Mathilda Masters | Truus Matti | Koos Meinderts | Tosca Menten | Brigitte Minne | Inge Misschaert | Bart Moeyaert | Janny van der Molen | Tine Mortier | Mirjam Mous | Eva Mouton | Tiny Mulder | Kris Nauwelaerts | Marleen Nelen | Dirk Nielandt | Selma Noort | K. Norel | Mirjam Oldenhave | Francine Oomen | Erik van Os | Els Pelgrom | Lynn Pinsart | Frank Pollet | Mance Post | Sieb Posthuma | Marjolein Pottie | Anne Provoost | Wouter van Reek | Katja Retsin | Maranke Rinck | Leonard Roggeveen | Lydia Rood | Gideon Samson | Erna Sassen | Aline Sax | Annet Schaap | Tom Schamp | Annie M.G. Schmidt | Roger Schoemans | Anneke Scholtens | Tom Schoonooghe | Janneke Schotveld | Ron Schröder | Jan Paul Schutten | Willy Schuyesmans | Astrid Sercu | Katrien Seynaeve | Manon Sikkel | Jan Simoen | Carry Slee | Liesbet Slegers | Walter Soethoudt | Karla Stoefs | Karlijn Stoffels | Maren Stoffels | Harmen van Straaten | Wendy Stroobant | René Struelens | René Swartenbroekx | An Swerts | Toon Tellegen | Jan Terlouw | Mark Tijsmans | Lia Timmermans | Leo Timmers | Thé Tjong-Khing | Marit Törnqvist | Pat van Beirs | Koen Van Biesen | Hilde Van Cauteren | Gerda van Cleemput | Jan Van Coillie | Henri Van Daele | Raymonde Vandekerkhove | Isabelle Vandenabeele | Leen Van den Berg | Sylvia Vanden Heede | Gil Vander Heyden | Thaïs Vanderheyden | Hilde Vandermeeren | Eric Vandermeulen | Hedwig Van de Velde | Johan Vandevelde | Ina Vandewijer | Katrien Vandewoude | Sebastiaan Van Doninck | Willy Van Doorselaer | Leen Van Durme | Pieter Van Eenoge | Gerda Van Erkel | Guido Van Genechten | Elsa van Hagendoren | Mariette Vanhalewijn | Kirstin Vanlierde | Sine Van Mol | Pieter van Oudheusden | Do Van Ranst | Jean-Claude van Rijckeghem | Tjibbe Veldkamp | Katie Velghe | Max Velthuijs | Edward van de Vendel | Lydia Verbeeck | Kathleen Vereecken | Peter Verhelst | Cyriel Verleyen | Karel Verleyen | Kaatje Vermeire | Moniek Vermeulen | Klaas Verplancke | Paul Verrept | Detty Verreydt | Dolf Verroen | Sarah Verroken | Mieke Versyp | Geert Vervaeke | Michaël Volkaerts | Kaat Vrancken | Jacques Vriens | Anke de Vries | Mel Wallis de Vries | Fiep Westendorp | Bette Westera | Ivo de Wijs | Riet Wille | Willem Wilmink | Anna Woltz | Anne Wyckmans | Jan de Zanger | Floortje Zwigtman</p></div>
+
+<!-- Weghalen zodra de inhoud bevestigd is -->
+<div class="voorbeeld">Voorbeeldpagina, inhoud nog niet definitief</div>
+
+<div class="wrap">
+  <header class="top">
+    <a class="ouderraad" href="https://www.facebook.com/Dewassenaard">
+      <span>Ouderraad</span>
+      <img src="img/ouderraad-logo.webp" alt="VBS De Wassenaard" width="220" height="180">
+    </a>
+    <nav aria-label="Op deze pagina">
+      <a href="#praktisch">Praktisch</a>
+      <a href="#auteur">Auteur</a>
+      <a href="#bestellen">Online bestellen</a>
+      <a href="#factuur">Op factuur</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="merk">
+        <!-- Leeuw en logo in één beeld, samengesteld volgens de posities in de pptx -->
+        <img class="boek" src="img/boek-leeuw.webp" alt="Boek" width="1100" height="590">
+        <p class="slogan"><span>Ontdek. Leer. Fantaseer!</span></p>
+      </div>
+
+      <div class="titel">
+        <h1><span>B</span><span class="klein">oekenbeurs</span></h1>
+        <div class="datumrij">
+          <span class="jaar">2026</span>
+          <ul class="uren">
+            <li><b>vrij 13/11</b> 15:00–18:30</li>
+            <li><b>zat 14/11</b> 09:00–17:30</li>
+          </ul>
+        </div>
+        <p class="plaats"><strong>VBS De Wassenaard</strong><span>Westernieuwweg 5, 8490 Varsenare</span></p>
+        <div class="knoppen">
+          <a class="knop" href="#praktisch">Praktische info</a>
+          <a class="knop licht" href="https://www.google.com/maps/search/?api=1&amp;query=VBS+De+Wassenaard%2C+Westernieuwweg+5%2C+8490+Varsenare">Route</a>
+        </div>
+      </div>
+
+      <img class="walvis" src="img/walvis.webp" alt="" width="800" height="626">
+    </section>
+
+    <section class="waarom" aria-label="Waarom">
+      <span class="pct">15%</span>
+      <p><strong>Kom boeken kiezen met je kind.</strong>Van elke aankoop gaat 15% naar de ouderraad, voor projecten van de school.</p>
+    </section>
+
+    <div class="rooster">
+      <section class="paneel span-7 met-deco" id="praktisch">
+        <h2>Praktisch</h2>
+        <dl class="info">
+          <dt>Wanneer</dt>
+          <dd>Vrijdag 13 november, 15:00–18:30<br>Zaterdag 14 november, 09:00–17:30</dd>
+          <dt>Waar</dt>
+          <dd>VBS De Wassenaard, Westernieuwweg 5, 8490 Varsenare</dd>
+          <dt>Wat</dt>
+          <dd>Nieuwe boeken voor alle leeftijden, van prentenboek tot jeugdroman, geselecteerd door boekhandel Jeukiboek.</dd>
+          <dt>Voor wie</dt>
+          <dd>Iedereen is welkom: ouders, grootouders, buren en vrienden.</dd>
+          <dt>Betalen</dt>
+          <dd>Bancontact, Payconiq of cash.</dd>
+        </dl>
+        <p class="tip"><b>Tip:</b> vrijdag direct na school is het het drukst. Liever rustig snuffelen? Kom op zaterdagnamiddag.</p>
+        <img class="deco zebra" src="img/zebra.webp" alt="" width="480" height="698">
+      </section>
+
+      <section class="paneel span-5" id="auteur">
+        <h2>Auteur op bezoek</h2>
+        <!-- TODO: toestemming/bron van de foto nagaan -->
+        <img class="auteurfoto" src="img/kris-kowlier.webp" alt="Kris Kowlier leest uit Felix en de bende van het Moordenaarsbos" width="960" height="640">
+        <h3>Kris Kowlier</h3>
+        <!-- TODO: tekst laten nalezen door Kris / Jeukiboek -->
+        <p>Kris Kowlier schrijft kinderboeken, zoals <i>Felix en de bende van het Moordenaarsbos</i>, en is de man achter Jeukiboek, de boekhandel van onze beurs.</p>
+        <div class="highlight">
+          <span class="wanneer">vr 13/11</span>
+          <p><b>Lezing door Kris Kowlier</b> voor de leerlingen van het 5e en 6e leerjaar.</p>
+        </div>
+        <p>Een boek laten signeren tijdens zijn lezing? <a href="#bestellen">Bestel het vooraf online</a>.</p>
+      </section>
+
+      <section class="paneel span-7 met-deco" id="bestellen">
+        <h2>Online bestellen</h2>
+        <p>Raak je niet tot op de beurs, of wil je een boek vooraf bestellen? Bestel dan online bij Jeukiboek. Ook dan steun je de school.</p>
+        <!-- TODO: data van de online beurs invullen -->
+        <p>De online beurs heeft eigen data en gaat pas op een bepaald moment open. De data vind je binnenkort hier.</p>
+        <ol class="stappen">
+          <li><span><b>Vul je winkelmandje</b>In de webshop van Jeukiboek, via de knop hieronder.</span></li>
+          <li><span><b>Kies de juiste verzendingswijze</b>Bij de winkelmand-totalen: “Boekenbeurs in school of ophalen winkel Jeukiboek”.</span></li>
+          <li><span><b>Vul de factuurgegevens in</b>Voornaam en achternaam: de naam van de leerling. School &amp; klas: De Wassenaard – klas – juf of meester.</span></li>
+          <li><span><b>Levering in de klas</b>Na afloop van de beurs worden de boeken in de klas van je kind geleverd.</span></li>
+        </ol>
+        <p class="tip"><b>Een boek laten signeren tijdens de lezing van Kris Kowlier?</b> Bestel het vooraf online en vul de naam en klas van je kind zeker juist in.</p>
+        <a class="knop" href="https://www.jeukiboek.be/boekenwinkel/">Naar de webshop van Jeukiboek</a>
+        <img class="deco aap" src="img/aap.webp" alt="" width="480" height="635">
+      </section>
+
+      <section class="paneel span-5" id="factuur">
+        <h2>Boeken op factuur</h2>
+        <p>Boeken voor je wachtzaal, kinderhoek of als cadeau voor je personeel? Koop op factuur en steun de school.</p>
+        <ul class="lijst">
+          <li>Huisarts, tandarts, kinesist, apotheek, kapper of garage</li>
+          <li>Kinderopvang, onthaalouders en jeugdbeweging</li>
+          <li>Bedrijven: een Sinterklaas- of kerstcadeau dat blijft</li>
+        </ul>
+        <p>Geef aan de kassa je factuurgegevens door, Jeukiboek bezorgt je de factuur.</p>
+        <p>Kan je niet komen? Stuur je lijstje via <a href="https://www.facebook.com/Dewassenaard">Facebook</a> of <a href="https://www.instagram.com/ouderraad_de_wassenaard/">Instagram</a>, wij zetten het klaar.</p>
+      </section>
+
+      <section class="paneel span-12" id="vroeger">
+        <h2>Wie kwam er al voorlezen?</h2>
+        <p>Elk jaar komt er een auteur of illustrator naar De Wassenaard. Een greep uit de vorige edities.</p>
+        <!-- TODO: per auteur 1 foto (auteur in beeld, kinderen enkel van op de rug) + 1 zin + link naar hun boeken -->
+        <div class="vroeger">
+          <figure><div class="foto">Foto gastauteur 2025</div><figcaption><b>Naam auteur · 2025</b>Eén zin over het bezoek.</figcaption></figure>
+          <figure><div class="foto">Foto gastauteur 2024</div><figcaption><b>Naam auteur · 2024</b>Eén zin over het bezoek.</figcaption></figure>
+          <figure><div class="foto">Foto gastauteur 2023</div><figcaption><b>Naam auteur · 2023</b>Eén zin over het bezoek.</figcaption></figure>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="voet">
+      <a class="partner" href="https://www.jeukiboek.be/">
+        <img src="img/jeukiboek.webp" alt="" width="320" height="315">
+        <span><small>met dank aan</small><strong>Jeukiboek</strong><br>Groenestraat 9, 8210 Zedelgem</span>
+      </a>
+      <div class="socials">
+        <a class="pil" href="https://www.facebook.com/Dewassenaard"><img src="img/facebook.webp" alt="" width="96" height="96">Dewassenaard</a>
+        <a class="pil" href="https://www.instagram.com/ouderraad_de_wassenaard/"><img src="img/instagram.webp" alt="" width="96" height="96">ouderraad_de_wassenaard</a>
+      </div>
+      <p class="colofon">Ouderraad VBS De Wassenaard · Westernieuwweg 5, 8490 Varsenare</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Herhaal de namenmuur zodat ook grote schermen gevuld zijn.
+  const namen = document.querySelector('.namen p');
+  namen.innerHTML = Array(4).fill(namen.innerHTML).join(' | ');
+</script>
+</body>
+</html>
