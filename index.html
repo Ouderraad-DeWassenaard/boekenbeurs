@@ -272,6 +272,43 @@
   }
   .stappen b { display: block; font: 600 1.12rem/1.3 var(--display); color: var(--wijn); }
 
+  /* Schermafbeeldingen van de webshop: naast elkaar, op smal scherm opzij vegen */
+  .schermen-uitleg { font-size: .95rem; color: #6b5a5f; }
+  .schermen { list-style: none; counter-reset: scherm; padding: 0; margin: 0 0 1.25rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+  .schermen li { counter-increment: scherm; }
+  /* Op breed scherm ook de vrije kolom boven de tekening gebruiken */
+  .met-deco .schermen { margin-right: calc(-150px - .75rem); margin-bottom: 2.6rem; }
+  .schermen a { display: grid; gap: .45rem; text-decoration: none; color: var(--tekst); font: 600 .95rem/1.25 var(--display); }
+  .schermen img { border: 1px solid var(--rand); border-radius: 12px; background: var(--papier); box-shadow: 0 4px 14px rgba(97, 11, 34, .1); }
+  .schermen a:hover img { border-color: var(--wijn); }
+  .schermen a:focus-visible { outline: 2px solid var(--wijn); outline-offset: 3px; border-radius: 12px; }
+  .schermen span::before {
+    content: counter(scherm);
+    display: inline-grid;
+    place-items: center;
+    width: 1.45rem;
+    height: 1.45rem;
+    margin-right: .4rem;
+    border-radius: 50%;
+    background: var(--wijn);
+    color: #fff;
+    font: 700 .9rem/1 var(--display);
+  }
+
+  /* Vergrote schermafbeeldingen, bladeren door te vegen of met de pijltjes */
+  .groot { width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(30, 8, 15, .94); color: #fff; }
+  .groot::backdrop { background: transparent; }
+  .groot-rij { display: flex; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior: contain; }
+  .groot-rij:focus { outline: none; }
+  .groot figure { flex: 0 0 100%; box-sizing: border-box; margin: 0; padding: 3.75rem 1rem 1.5rem; scroll-snap-align: center; display: grid; place-content: center; justify-items: center; gap: .75rem; }
+  .groot img { width: auto; max-height: calc(100dvh - 8.5rem); border-radius: 12px; }
+  .groot figcaption { font: 600 1.15rem/1.2 var(--display); text-align: center; }
+  .groot-knop { position: absolute; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .92); color: var(--wijn); font: 700 1.5rem/1 var(--display); cursor: pointer; }
+  .groot-knop.sluit { top: .75rem; right: .75rem; }
+  .groot-knop.vorige, .groot-knop.volgende { top: 50%; translate: 0 -50%; }
+  .groot-knop.vorige { left: .75rem; }
+  .groot-knop.volgende { right: .75rem; }
+
   .lijst { margin: 0 0 1rem; padding-left: 1.2rem; }
   .lijst li { margin-bottom: .25rem; }
   .lijst li::marker { color: var(--rood); }
@@ -335,6 +372,8 @@
     /* Op smal scherm onderaan in het vak, rechts uitgelijnd */
     .deco { position: static; display: block; width: 100px; margin: 1rem 0 0 auto; }
     .vroeger { grid-template-columns: repeat(2, 1fr); }
+    .schermen, .met-deco .schermen { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(72%, 240px); overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; margin: 0 0 1.25rem; padding-bottom: .5rem; }
+    .schermen li { scroll-snap-align: start; }
   }
   @media (max-width: 480px) {
     .paneel, .met-deco { padding: 1.3rem 1.2rem 1.4rem; }
@@ -442,9 +481,16 @@
         <p>De online beurs heeft eigen data en gaat pas op een bepaald moment open. De data vind je binnenkort hier.</p>
         <ol class="stappen">
           <li><span><b>Vul je winkelmandje</b>In de webshop van Jeukiboek, via de knop hieronder.</span></li>
-          <li><span><b>Kies de juiste verzendingswijze</b>Bij de winkelmand-totalen: “Boekenbeurs in school of ophalen winkel Jeukiboek”.</span></li>
-          <li><span><b>Vul de factuurgegevens in</b>Voornaam en achternaam: de naam van de leerling. School &amp; klas: De Wassenaard – klas – juf of meester.</span></li>
+          <li><span><b>Kies de juiste verzendingswijze</b>In de winkelwagen, bij Verzending: “Boekenbeurs in school of ophalen winkel Jeukiboek”. Standaard staat “Vast tarief € 4,00” aangeduid.</span></li>
+          <li><span><b>Vul de factuurgegevens in</b>Voornaam en achternaam: de naam van de leerling. School &amp; klas: De Wassenaard – klas – juf of meester. De andere velden zijn je eigen gegevens.</span></li>
           <li><span><b>Levering in de klas</b>Na afloop van de beurs worden de boeken in de klas van je kind geleverd.</span></li>
+        </ol>
+        <p class="schermen-uitleg">Zo ziet het eruit in de webshop. Tik op een beeld om het te vergroten.</p>
+        <!-- TODO: bestellen-2 opnieuw maken als de online beurs open is (promo/webshop-schermen in de projectrepo). De verzendoptie heet nu nog "Ophalen winkel Jeukiboek", het label op de foto is nagebootst. -->
+        <ol class="schermen">
+          <li><a href="img/bestellen-1.webp"><img src="img/bestellen-1.webp" alt="Boek in de webshop van Jeukiboek, de knop Toevoegen aan winkelwagen is omkaderd" width="780" height="1080" loading="lazy"><span>Toevoegen aan winkelwagen</span></a></li>
+          <li><a href="img/bestellen-2.webp"><img src="img/bestellen-2.webp" alt="Winkelwagen: bij Verzending is Boekenbeurs in school of ophalen winkel Jeukiboek aangeduid in plaats van Vast tarief € 4,00" width="780" height="1080" loading="lazy"><span>Verzending: boekenbeurs in school</span></a></li>
+          <li><a href="img/bestellen-3.webp"><img src="img/bestellen-3.webp" alt="Afrekenen: voornaam en achternaam van het kind en bij School en klas De Wassenaard – 3B – juf of meester" width="780" height="1080" loading="lazy"><span>Naam en klas van je kind</span></a></li>
         </ol>
         <p class="tip"><b>Een boek laten signeren tijdens de lezing van Kris Kowlier?</b> Bestel het vooraf online en vul de naam en klas van je kind zeker juist in.</p>
         <a class="knop" href="https://www.jeukiboek.be/boekenwinkel/">Naar de webshop van Jeukiboek</a>
@@ -495,10 +541,44 @@
   </footer>
 </div>
 
+<dialog class="groot" id="groot" aria-label="Schermafbeeldingen van de webshop">
+  <div class="groot-rij" tabindex="-1"></div>
+  <button class="groot-knop sluit" type="button" aria-label="Sluiten">✕</button>
+  <button class="groot-knop vorige" type="button" aria-label="Vorige">‹</button>
+  <button class="groot-knop volgende" type="button" aria-label="Volgende">›</button>
+</dialog>
+
 <script>
   // Herhaal de namenmuur zodat ook grote schermen gevuld zijn.
   const namen = document.querySelector('.namen p');
   namen.innerHTML = Array(4).fill(namen.innerHTML).join(' | ');
+
+  // Schermafbeeldingen van de webshop groot tonen. Zonder JavaScript opent de link gewoon de afbeelding.
+  const groot = document.getElementById('groot');
+  const rij = groot.querySelector('.groot-rij');
+  const schermen = [...document.querySelectorAll('.schermen a')];
+  const zacht = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  const blader = r => rij.scrollBy({ left: r * rij.clientWidth, behavior: zacht });
+  schermen.forEach((a, i) => {
+    const fig = document.createElement('figure');
+    const cap = document.createElement('figcaption');
+    cap.textContent = `${i + 1}/${schermen.length} · ${a.textContent}`;
+    fig.append(a.querySelector('img').cloneNode(), cap);
+    rij.append(fig);
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      groot.showModal();
+      rij.scrollTo({ left: i * rij.clientWidth, behavior: 'instant' });
+      rij.focus();
+    });
+  });
+  groot.querySelector('.sluit').addEventListener('click', () => groot.close());
+  groot.querySelector('.vorige').addEventListener('click', () => blader(-1));
+  groot.querySelector('.volgende').addEventListener('click', () => blader(1));
+  groot.addEventListener('click', e => { if (e.target === rij || e.target.tagName === 'FIGURE') groot.close(); });
+  groot.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); blader(e.key === 'ArrowLeft' ? -1 : 1); }
+  });
 </script>
 </body>
 </html>
