@@ -97,7 +97,8 @@
   }
   .top nav a:hover { background: #f6e9ec; }
   .top-rechts { display: flex; align-items: center; gap: .75rem; }
-  .top-socials { display: flex; gap: .4rem; }
+  .top-socials { display: flex; gap: .4rem; align-items: flex-start; }
+  .top-socials .fb { display: flex; flex-direction: column; align-items: center; gap: .3rem; }
   .top-socials a {
     display: grid;
     place-items: center;
@@ -109,6 +110,17 @@
   }
   .top-socials a:hover { border-color: var(--wijn); }
   .top-socials img { width: 1.6rem; height: 1.6rem; }
+  /* Link naar het Facebook-evenement, onder het Facebook-logo */
+  .top-socials a.evenement {
+    width: auto;
+    height: auto;
+    border-radius: 999px;
+    padding: .25rem .6rem;
+    font: 600 .85rem/1 var(--display);
+    color: var(--wijn);
+    text-decoration: none;
+    white-space: nowrap;
+  }
 
   /* Hero, opgebouwd zoals de affiche */
   .hero {
@@ -388,7 +400,11 @@
         <a href="#factuur">Op factuur</a>
       </nav>
       <div class="top-socials">
-        <a href="https://www.facebook.com/Dewassenaard" aria-label="Ouderraad De Wassenaard op Facebook"><img src="img/facebook.webp" alt="" width="96" height="96"></a>
+        <div class="fb">
+          <a href="https://www.facebook.com/Dewassenaard" aria-label="Ouderraad De Wassenaard op Facebook"><img src="img/facebook.webp" alt="" width="96" height="96"></a>
+          <!-- TODO: rechtstreekse link naar het evenement BOEK 2026 -->
+          <a class="evenement" href="https://www.facebook.com/Dewassenaard/events">Evenement</a>
+        </div>
         <a href="https://www.instagram.com/ouderraad_de_wassenaard/" aria-label="Ouderraad De Wassenaard op Instagram"><img src="img/instagram.webp" alt="" width="96" height="96"></a>
       </div>
     </div>
