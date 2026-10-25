@@ -97,8 +97,8 @@
   }
   .top nav a:hover { background: #f6e9ec; }
   .top-rechts { display: flex; align-items: center; gap: .75rem; }
-  .top-socials { display: flex; gap: .4rem; align-items: flex-start; }
-  .top-socials .fb { display: flex; flex-direction: column; align-items: center; gap: .3rem; }
+  .top-socials { display: flex; flex-direction: column; align-items: flex-end; gap: .45rem; }
+  .top-socials .iconen { display: flex; gap: .4rem; }
   .top-socials a {
     display: grid;
     place-items: center;
@@ -110,17 +110,22 @@
   }
   .top-socials a:hover { border-color: var(--wijn); }
   .top-socials img { width: 1.6rem; height: 1.6rem; }
-  /* Link naar het Facebook-evenement, onder het Facebook-logo */
+  /* Knop naar het Facebook-evenement, onder de logo's */
   .top-socials a.evenement {
+    display: block;
     width: auto;
     height: auto;
-    border-radius: 999px;
-    padding: .25rem .6rem;
-    font: 600 .85rem/1 var(--display);
+    max-width: 16rem;
+    border: 2px solid var(--wijn);
+    border-radius: 14px;
+    padding: .45rem .8rem;
+    font: 500 .98rem/1.2 var(--display);
     color: var(--wijn);
+    text-align: center;
     text-decoration: none;
-    white-space: nowrap;
   }
+  .top-socials a.evenement b { display: block; font-weight: 700; font-size: 1.08rem; white-space: nowrap; }
+  .top-socials a.evenement:hover { background: #f6e9ec; }
 
   /* Hero, opgebouwd zoals de affiche */
   .hero {
@@ -400,12 +405,12 @@
         <a href="#factuur">Op factuur</a>
       </nav>
       <div class="top-socials">
-        <div class="fb">
+        <div class="iconen">
           <a href="https://www.facebook.com/Dewassenaard" aria-label="Ouderraad De Wassenaard op Facebook"><img src="img/facebook.webp" alt="" width="96" height="96"></a>
-          <!-- TODO: rechtstreekse link naar het evenement BOEK 2026 -->
-          <a class="evenement" href="https://www.facebook.com/Dewassenaard/events">Evenement</a>
+          <a href="https://www.instagram.com/ouderraad_de_wassenaard/" aria-label="Ouderraad De Wassenaard op Instagram"><img src="img/instagram.webp" alt="" width="96" height="96"></a>
         </div>
-        <a href="https://www.instagram.com/ouderraad_de_wassenaard/" aria-label="Ouderraad De Wassenaard op Instagram"><img src="img/instagram.webp" alt="" width="96" height="96"></a>
+        <!-- TODO: rechtstreekse link naar het evenement BOEK 2026 -->
+        <a class="evenement" href="https://www.facebook.com/Dewassenaard/events"><b>Volg ons Facebook-evenement</b>en krijg updates over de beurs</a>
       </div>
     </div>
   </header>
