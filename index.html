@@ -244,6 +244,7 @@
   .info dd { margin: 0; }
   .tip { background: #f8eef0; border-radius: 12px; padding: .75rem 1rem; font-size: .98rem; }
   .tip b { color: var(--wijn); }
+  .notitie { display: block; margin-top: .4rem; padding: .5rem .75rem; background: var(--papier); border: 1px solid var(--rand); border-radius: 8px; font-family: ui-monospace, Consolas, monospace; font-size: .92rem; color: var(--tekst); }
 
   /* Tekening rechtsonder binnen het vak, in de vrijgehouden rechterkolom */
   .deco { position: absolute; right: 1.25rem; bottom: 1.25rem; width: 150px; pointer-events: none; }
@@ -402,6 +403,7 @@
       <nav aria-label="Op deze pagina">
         <a href="#praktisch">Praktisch</a>
         <a href="#auteur">Auteur</a>
+        <a href="#bestellen">Online bestellen</a>
         <a href="#factuur">Op factuur</a>
       </nav>
       <div class="top-socials">
@@ -476,9 +478,31 @@
           <span class="wanneer">vr 13/11</span>
           <p><b>Lezing door Kris Kowlier</b> voor de leerlingen van het 5e en 6e leerjaar.</p>
         </div>
+        <p>Een boek laten signeren tijdens de lezing? <a href="#bestellen">Bestel het vooraf online</a>.</p>
       </section>
 
-      <section class="paneel span-12 met-deco" id="factuur">
+      <section class="paneel span-7 met-deco" id="bestellen">
+        <h2>Online bestellen</h2>
+        <p>Heb je ergens een leuk boek gezien? Bestel het dan online via onze boekenbeurs. Zo steun je projecten voor de school: van elke bestelling gaat 15% naar de ouderraad.</p>
+        <p><b>Online bestellen kan tot en met zaterdag 14/11.</b> Na de beurs ligt het boek in de klas van je kind.</p>
+        <ol class="stappen">
+          <li><span><b>Leg je boek in je winkelwagen</b>Zoek het in de webshop van Jeukiboek, via de knop hieronder.</span></li>
+          <li><span><b>Kies “Ophalen winkel Jeukiboek”</b>In de winkelwagen, bij Verzending. Standaard staat “Vast tarief € 4,00” aangeduid. Ophalen is gratis: het boek komt naar de klas.</span></li>
+          <li><span><b>Schrijf bij “Order notities” de school, klas en naam</b>Vul bij het afrekenen je gegevens in en zet onderaan bij Order notities, met de klas en naam van je kind:<span class="notitie">[Boekenbeurs De Wassenaard]<br>Klas 3A - Naam Leerling</span></span></li>
+          <li><span><b>Bestel en betaal online</b>Na afloop van de beurs worden de boeken in de klas van je kind geleverd.</span></li>
+        </ol>
+        <p class="schermen-uitleg">Zo ziet het eruit in de webshop. Tik op een beeld om het te vergroten.</p>
+        <ol class="schermen">
+          <li><a href="img/bestellen-1.webp"><img src="img/bestellen-1.webp" alt="Boek in de webshop van Jeukiboek, de knop Toevoegen aan winkelwagen is omkaderd" width="780" height="1080" loading="lazy"><span>Toevoegen aan winkelwagen</span></a></li>
+          <li><a href="img/bestellen-2.webp"><img src="img/bestellen-2.webp" alt="Winkelwagen: bij Verzending is Ophalen winkel Jeukiboek aangeduid in plaats van Vast tarief € 4,00" width="780" height="1080" loading="lazy"><span>Verzending: ophalen winkel Jeukiboek</span></a></li>
+          <li><a href="img/bestellen-3.webp"><img src="img/bestellen-3.webp" alt="Afrekenen: bij Order notities staat [Boekenbeurs De Wassenaard] en op de volgende regel Klas 3A - Naam Leerling" width="780" height="1080" loading="lazy"><span>Order notities: school, klas en naam</span></a></li>
+        </ol>
+        <p class="tip"><b>Een boek laten signeren tijdens de lezing van Kris Kowlier?</b> Bestel het vooraf online en zet de klas en naam van je kind zeker juist bij de order notities.</p>
+        <a class="knop" href="https://www.jeukiboek.be/boekenwinkel/">Naar de webshop van Jeukiboek</a>
+        <img class="deco aap" src="img/aap.webp" alt="" width="480" height="635">
+      </section>
+
+      <section class="paneel span-5" id="factuur">
         <h2>Boeken op factuur</h2>
         <p>Boeken voor je wachtzaal, kinderhoek of als cadeau voor je personeel? Koop op factuur en steun de school.</p>
         <ul class="lijst">
@@ -487,7 +511,6 @@
           <li>Bedrijven: een Sinterklaas- of kerstcadeau dat blijft</li>
         </ul>
         <p>Geef aan de kassa je factuurgegevens door, Jeukiboek bezorgt je de factuur.</p>
-        <img class="deco aap" src="img/aap.webp" alt="" width="480" height="635">
       </section>
 
       <section class="paneel span-12" id="vroeger">
@@ -522,10 +545,44 @@
   </footer>
 </div>
 
+<dialog class="groot" id="groot" aria-label="Schermafbeeldingen van de webshop">
+  <div class="groot-rij" tabindex="-1"></div>
+  <button class="groot-knop sluit" type="button" aria-label="Sluiten">✕</button>
+  <button class="groot-knop vorige" type="button" aria-label="Vorige">‹</button>
+  <button class="groot-knop volgende" type="button" aria-label="Volgende">›</button>
+</dialog>
+
 <script>
   // Herhaal de namenmuur zodat ook grote schermen gevuld zijn.
   const namen = document.querySelector('.namen p');
   namen.innerHTML = Array(4).fill(namen.innerHTML).join(' | ');
+
+  // Schermafbeeldingen van de webshop groot tonen. Zonder JavaScript opent de link gewoon de afbeelding.
+  const groot = document.getElementById('groot');
+  const rij = groot.querySelector('.groot-rij');
+  const schermen = [...document.querySelectorAll('.schermen a')];
+  const zacht = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  const blader = r => rij.scrollBy({ left: r * rij.clientWidth, behavior: zacht });
+  schermen.forEach((a, i) => {
+    const fig = document.createElement('figure');
+    const cap = document.createElement('figcaption');
+    cap.textContent = `${i + 1}/${schermen.length} · ${a.textContent}`;
+    fig.append(a.querySelector('img').cloneNode(), cap);
+    rij.append(fig);
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      groot.showModal();
+      rij.scrollTo({ left: i * rij.clientWidth, behavior: 'instant' });
+      rij.focus();
+    });
+  });
+  groot.querySelector('.sluit').addEventListener('click', () => groot.close());
+  groot.querySelector('.vorige').addEventListener('click', () => blader(-1));
+  groot.querySelector('.volgende').addEventListener('click', () => blader(1));
+  groot.addEventListener('click', e => { if (e.target === rij || e.target.tagName === 'FIGURE') groot.close(); });
+  groot.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); blader(e.key === 'ArrowLeft' ? -1 : 1); }
+  });
 </script>
 </body>
 </html>
